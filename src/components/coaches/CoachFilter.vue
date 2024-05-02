@@ -1,49 +1,47 @@
 <template>
-    <base-card>
-    <h2>
-        Find your coach
-    </h2>
+  <base-card>
+    <h2>Find your coach</h2>
     <span class="filter-option">
-        <input type="checkbox" id="frontend" checked  />
-        <label for="frontend">Frontend</label>
+      <input type="checkbox" id="frontend" checked @change="setfilter" />
+      <label for="frontend">Frontend</label>
     </span>
     <span class="filter-option">
-        <input type="checkbox" id="backend" checked />
-        <label for="backend">Backend</label>
+      <input type="checkbox" id="backend" checked @change="setfilter" />
+      <label for="backend">Backend</label>
     </span>
     <span class="filter-option">
-        <input type="checkbox" id="carrer" checked />
-        <label for="carrer">Carrer</label>
+      <input type="checkbox" id="career" checked @change="setfilter" />
+      <label for="career">career</label>
     </span>
-    </base-card>
+  </base-card>
 </template>
 
 <script>
 export default {
-    emits: ['change-filter'],
-    data(){
-        return{
-            filters:{
-                frontend: true,
-                backend: true,
-                carrer: true,
-            }
-        };
-    },
+  emits: ['change-filter'],
+  data() {
+    return {
+      filters: {
+        frontend: true,
+        backend: true,
+        career: true,
+      },
+    };
+  },
 
-    methods:{
-        setfilter(){
-            const inputId = event.target.id;
-            const isActive = event.target.checked;
-            const updatedFilters = {
-                ...this.filters,
-                [inputId]: isActive,
-            };
-            this.filters = updatedFilters;
-            this.$emit('change-filter', updatedFilters);
-        }
-    }
-}
+  methods: {
+    setfilter() {
+      const inputId = event.target.id;
+      const isActive = event.target.checked;
+      const updatedFilters = {
+        ...this.filters,
+        [inputId]: isActive,
+      };
+      this.filters = updatedFilters;
+      this.$emit('change-filter', updatedFilters);
+    },
+  },
+};
 </script>
 
 <style scoped>
